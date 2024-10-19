@@ -9,23 +9,20 @@ void MyDisplay() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glColor3f(1.0, 0.3, 0.3);
-    glutWireSphere(0.2, 20, 16);  // 태양
+    glutWireSphere(0.2, 20, 16);
 
     glPushMatrix();
-    // 공전: Y축에서 X축으로 변경
     glRotatef((GLfloat)Day, 0.0, 0.0, 1.0);
     glTranslatef(0.7, 0.0, 0.0);
-    // 자전: Y축에서 Z축으로 변경
     glRotatef((GLfloat)Time, 0.0, 0.0, 1.0);
     glColor3f(0.5, 0.6, 0.7);
-    glutWireSphere(0.1, 10, 8);  // 행성
+    glutWireSphere(0.1, 10, 8);
 
     glPushMatrix();
-    // 위성의 자전: Y축에서 Z축으로 변경
     glRotatef((GLfloat)Time, 0.0, 0.0, 1.0);
     glTranslatef(0.2, 0.0, 0.0);
     glColor3f(0.9, 0.8, 0.2);
-    glutWireSphere(0.04, 10, 8);  // 위성
+    glutWireSphere(0.04, 10, 8);
     glPopMatrix();
     glPopMatrix();
 
