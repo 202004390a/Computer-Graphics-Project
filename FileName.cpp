@@ -1,199 +1,183 @@
-#include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glut.h> // GLUT 헤더 파일
+#include <cmath>
 
-void DrawTable();
-void DrawCup();
-void DrawTeapot();
+int windowWidth = 800;
+int windowHeight = 600;
+bool wireframeMode = false; // 와이어프레임 모드 상태
+float sphereY = 3.0f;       // 구의 y축 위치 (초기값)
+float velocity = 0.0f;      // 구의 초기 속도
+float gravity = -9.8f;      // 중력 가속도 (m/s^2)
+float deltaTime = 0.016f;   // 프레임당 시간 (초)
+bool isFalling = true;      // 구가 떨어지는 상태
+float scaleX = 1.0f;        // x축 스케일
+float scaleY = 1.0f;        // y축 스케일
+float scaleZ = 1.0f;        // z축 스케일
+bool isCompressing = false; // 구가 눌리는 상태
+bool isBouncing = false;    // 구가 튕기는 상태
+float compressionSpeed = 0.1f; // 압축 속도
+float bounceFactor = 0.8f;  // 튕길 때 속도 감소 계수
+bool isRestoring = false;
 
-int FlatShaded = 0;	int Wireframed = 0;
+// 디스플레이 콜백 함수
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
 
-int ViewX = 0, ViewY = 0;
+    // 카메라 위치 설정
+    gluLookAt(0.0, 0.0, 10.0,
+        0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0);
 
-void InitLight() {
-	GLfloat mat_diffuse[] = { 1.0, 1.0, 0.3, 1.0 };
-	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat mat_ambient[] = { 0.5, 0.4, 0.3, 1.0 };
-	GLfloat mat_shininess[] = { 15.0 };
-	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_diffuse[] = { 0.8, 0.8, 0.8, 1.0 };
-	GLfloat light_ambient[] = { 0.3, 0.3, 0.3, 1.0 };
-	GLfloat light_position[] = { -3, 6, 3.0, 0.0 };
-	glShadeModel(GL_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-	glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+    // 와이어프레임 모드 설정
+    if (wireframeMode) {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+    else {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+
+    // 타원 생성 (구)
+    glPushMatrix();
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glTranslatef(0.0f, sphereY, 0.0f);
+    glScalef(scaleX, scaleY, scaleZ);
+    glutSolidSphere(0.3, 20, 20);
+    glPopMatrix();
+
+    // 큐브 생성 (땅)
+    glPushMatrix();
+    glColor3f(0.3f, 0.7f, 0.3f);
+    glTranslatef(0.0f, -1.0f, 0.0f);
+    glScalef(5.0f, 0.5f, 5.0f);
+    glutSolidCube(1.0);
+    glPopMatrix();
+
+    glutSwapBuffers();
 }
 
-void MyMouseMove(GLint X, GLint Y) {
-	glutPostRedisplay();
+// 애니메이션 업데이트 함수
+void update(int value) {
+    // 최소 속도 조건
+    const float minBounceVelocity = 1.0f; // 최소 튕김 속도
+    static float compressionFactor = 1.0f; // 압축 정도를 조절하는 변수
+
+    if (isFalling) {
+        // 중력 가속도 공식 적용
+        velocity += gravity * deltaTime; // 속도 업데이트 (v = v0 + a * t)
+        sphereY += velocity * deltaTime; // 위치 업데이트 (y = y0 + v * t)
+
+        // 구가 땅에 닿으면
+        if (sphereY <= -0.45f) {
+            sphereY = -0.45f;
+            velocity = -velocity * bounceFactor; // 속도 반전 및 감속
+
+            // 튕김 속도가 최소 속도보다 작으면 복원 단계로 이동
+            if (fabs(velocity) < minBounceVelocity) {
+                velocity = 0.0f;
+                isFalling = false;
+                isCompressing = false;
+                isBouncing = false;
+                isRestoring = true; // 복원 단계 시작
+            }
+            else {
+                isFalling = false;
+                isCompressing = true;
+                compressionFactor *= 0.9f; // 압축 정도 감소 (튕길수록 덜 눌림)
+            }
+        }
+    }
+
+    if (isCompressing) {
+        // 구가 눌림 (y축이 줄어들고, x축과 z축이 퍼짐)
+        scaleY -= compressionSpeed * compressionFactor;
+        scaleX += compressionSpeed * compressionFactor;
+        scaleZ += compressionSpeed * compressionFactor;
+
+        // 충분히 눌렸으면 튕기기 시작
+        if (scaleY <= 0.5f * (2-compressionFactor)) {
+            isCompressing = false;
+            isBouncing = true;
+            isFalling = true;
+        }
+    }
+    else if (isBouncing) {
+        // 구가 튕겨 오름 (x축과 z축이 줄어들고, y축이 늘어남)
+        scaleY += compressionSpeed;
+        scaleX -= compressionSpeed;
+        scaleZ -= compressionSpeed;
+
+        // 구가 다시 원래 크기로 돌아옴
+        if (scaleY >= 1.2f * compressionFactor) {
+            scaleX = 1.0f;
+            scaleY = 1.0f;
+            scaleZ = 1.0f;
+            isBouncing = false;
+        }
+    }
+    else if (isRestoring) {
+        // 구가 점진적으로 원래 크기로 복원됨
+        float restoreSpeed = 0.05f; // 부드러운 복원 속도
+        scaleX += (1.0f - scaleX) * restoreSpeed;
+        scaleY += (1.0f - scaleY) * restoreSpeed;
+        scaleZ += (1.0f - scaleZ) * restoreSpeed;
+
+        // 원래 크기로 복원되면 애니메이션 종료
+        if (fabs(scaleX - 1.0f) < 0.01f && fabs(scaleY - 1.0f) < 0.01f && fabs(scaleZ - 1.0f) < 0.01f) {
+            scaleX = 1.0f;
+            scaleY = 1.0f;
+            scaleZ = 1.0f;
+            isRestoring = false;
+            isFalling = false;
+            compressionFactor = 1.0f; // 압축 정도 초기화
+        }
+    }
+
+    glutPostRedisplay();         // 화면 갱신 요청
+    glutTimerFunc(16, update, 0); // 16ms 후에 다시 업데이트 (약 60FPS)
 }
 
-void MyKeyboard(unsigned char key, int x, int y) {
-	switch (key) {
-	case 'q': case 'Q': case '\033':
-		exit(0);
-		break;
-	case 's':
-		if (FlatShaded) {
-			FlatShaded = 0;
-			glShadeModel(GL_SMOOTH);
-		}
-		else {
-			FlatShaded = 1;
-			glShadeModel(GL_FLAT);
-		}
-		glutPostRedisplay();
-		break;
-	}
+
+
+
+
+// 윈도우 리사이즈 콜백 함수
+void reshape(int w, int h) {
+    glViewport(0, 0, w, h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(45.0, (double)w / (double)h, 1.0, 100.0);
+    glMatrixMode(GL_MODELVIEW);
 }
 
-void MyDisplay() {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	// 카메라 위치 조정
-	gluLookAt(1.0, 2.0, 2.0,  // 카메라 위치
-		0.0, 0.0, 0.0,  // 바라보는 지점
-		0.0, 1.0, 0.0); // 위쪽 방향 (Y축)
-
-	DrawTeapot();
-	DrawTable();
-	DrawCup();
-
-	glFlush();
+// 키보드 입력 콜백 함수
+void keyboard(unsigned char key, int x, int y) {
+    if (key == 'w' || key == 'W') {
+        wireframeMode = true;
+    }
+    else if (key == 's' || key == 'S') {
+        wireframeMode = false;
+    }
+    glutPostRedisplay();
 }
 
-
-void MyReshape(int w, int h) {
-	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-
-	// 투영 설정 조정
-	if (w <= h)
-		glOrtho(-1.0, 1.0, -1.0 * (GLfloat)h / (GLfloat)w, 1.0 * (GLfloat)h / (GLfloat)w, -10.0, 10.0);
-	else
-		glOrtho(-1.0 * (GLfloat)w / (GLfloat)h, 1.0 * (GLfloat)w / (GLfloat)h, -1.0, 1.0, -10.0, 10.0);
+// 초기화 함수
+void init() {
+    glEnable(GL_DEPTH_TEST);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 }
 
-int main(int argc, char* argv[]) {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(400, 400);
-	glutInitWindowPosition(0, 0);
-	glutCreateWindow("OpenGL Sample Drawing");
+// 메인 함수
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+    glutInitWindowSize(windowWidth, windowHeight);
+    glutCreateWindow("Bouncing Ball with Horizontal Deformation");
 
-	glClearColor(0.4, 0.4, 0.4, 0.0);
-	InitLight();
-	glutDisplayFunc(MyDisplay);
-	glutKeyboardFunc(MyKeyboard);
-	glutMotionFunc(MyMouseMove);
-	glutReshapeFunc(MyReshape);
-	glutMainLoop();
-}
-
-void DrawTable() {
-	// 갈색 재질 설정
-	GLfloat table_diffuse[] = { 0.55f, 0.27f, 0.07f, 1.0f };  // 갈색 (RGB)
-	GLfloat table_specular[] = { 0.3f, 0.3f, 0.3f, 1.0f };    // 약간의 반사광
-	GLfloat table_shininess[] = { 30.0f };                     // 재질의 광택
-
-
-
-	// 테이블 상판
-	glPushMatrix();
-	glTranslatef(0.0f, -0.2f, 0.0f); // 상판 위치
-	glScalef(0.6f, 0.05f, 0.6f);     // 상판 크기 조정
-	glutSolidCube(1.0f);             // 큐브로 상판 그리기
-	glPopMatrix();
-
-	// 테이블 다리 (네 개의 다리)
-	float legHeight = 0.4f;
-	float legWidth = 0.05f;
-
-	// 첫 번째 다리
-	glPushMatrix();
-	glTranslatef(0.25f, -(0.2f + legHeight / 2), 0.25f); // 다리 위치
-	glScalef(legWidth, legHeight, legWidth);             // 다리 크기 조정
-	glutSolidCube(1.0f);                                 // 큐브로 다리 그리기
-	glPopMatrix();
-
-	// 두 번째 다리
-	glPushMatrix();
-	glTranslatef(-0.25f, -(0.2f + legHeight / 2), 0.25f);
-	glScalef(legWidth, legHeight, legWidth);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-
-	// 세 번째 다리
-	glPushMatrix();
-	glTranslatef(0.25f, -(0.2f + legHeight / 2), -0.25f);
-	glScalef(legWidth, legHeight, legWidth);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-
-	// 네 번째 다리
-	glPushMatrix();
-	glTranslatef(-0.25f, -(0.2f + legHeight / 2), -0.25f);
-	glScalef(legWidth, legHeight, legWidth);
-	glutSolidCube(1.0f);
-	glPopMatrix();
-}
-
-void DrawCup() {
-	// 컵 색상 설정 (흰색)
-	GLfloat cup_diffuse[] = { 0.0f, 0.9f, 0.9f, 1.0f };  // 흰색
-	GLfloat cup_specular[] = { 0.8f, 0.8f, 0.8f, 1.0f };
-	GLfloat cup_shininess[] = { 50.0f };
-
-	// 재질 적용
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, cup_diffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, cup_specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, cup_shininess);
-
-	// GLUquadric 생성
-	GLUquadric* quadric = gluNewQuadric();
-
-	// 컵 몸체 (원통)
-	glPushMatrix();
-	glTranslatef(0.25f, -0.1f, 0.25f);  // 컵의 위치를 테이블 모서리로 이동
-	glRotatef(-90, 1.0f, 0.0f, 0.0f);   // X축을 기준으로 90도 회전 (컵을 눕힘)
-	gluCylinder(quadric, 0.05f, 0.05f, 0.12f, 30, 30);  // 반지름 0.1, 높이 0.15의 원통
-	glPopMatrix();
-
-	// 컵 바닥 (디스크)
-	glPushMatrix();
-	glTranslatef(0.25f, -0.35f, 0.25f);  // 컵 바닥을 원통 아래로 이동
-	glRotatef(-90, 1.0f, 0.0f, 0.0f);    // 컵 바닥도 동일하게 회전
-	gluDisk(quadric, 0.05f, 0.05f, 30, 30);  // 반지름 0.1의 원형 디스크
-	glPopMatrix();
-
-	// GLUquadric 해제
-	gluDeleteQuadric(quadric);
-}
-
-void DrawTeapot() {
-
-	GLfloat mat_diffuse[] = { 0.5, 0.5, 0.3, 0.7 };
-	GLfloat mat_specular[] = { 0.0, 0.0, 0.0, 1.0 };
-	GLfloat mat_ambient[] = { 0.5, 0.4, 0.3, 1.0 };
-
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_ambient);
-
-	glPushMatrix();
-	glTranslatef(0.0f, -0.1f, 0.0f); // 찻주전자를 탁자 위로 이동
-	glutSolidTeapot(0.2);
-	glPopMatrix();
+    init();
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutKeyboardFunc(keyboard);
+    glutTimerFunc(16, update, 0); // 애니메이션 업데이트 시작
+    glutMainLoop();
+    return 0;
 }
