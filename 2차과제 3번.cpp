@@ -1,34 +1,34 @@
-#include <GL/glut.h> // GLUT Çì´õ ÆÄÀÏ
+#include <GL/glut.h> // GLUT í—¤ë” íŒŒì¼
 #include <cmath>
 
 int windowWidth = 800;
 int windowHeight = 600;
-bool wireframeMode = false; // ¿ÍÀÌ¾îÇÁ·¹ÀÓ ¸ğµå »óÅÂ
-float sphereY = 3.0f;       // ±¸ÀÇ yÃà À§Ä¡ (ÃÊ±â°ª)
-float velocity = 0.0f;      // ±¸ÀÇ ÃÊ±â ¼Óµµ
-float gravity = -9.8f;      // Áß·Â °¡¼Óµµ (m/s^2)
-float deltaTime = 0.016f;   // ÇÁ·¹ÀÓ´ç ½Ã°£ (ÃÊ)
-bool isFalling = true;      // ±¸°¡ ¶³¾îÁö´Â »óÅÂ
-float scaleX = 1.0f;        // xÃà ½ºÄÉÀÏ
-float scaleY = 1.0f;        // yÃà ½ºÄÉÀÏ
-float scaleZ = 1.0f;        // zÃà ½ºÄÉÀÏ
-bool isCompressing = false; // ±¸°¡ ´­¸®´Â »óÅÂ
-bool isBouncing = false;    // ±¸°¡ Æ¨±â´Â »óÅÂ
-float compressionSpeed = 0.1f; // ¾ĞÃà ¼Óµµ
-float bounceFactor = 0.8f;  // Æ¨±æ ¶§ ¼Óµµ °¨¼Ò °è¼ö
+bool wireframeMode = false; // ì™€ì´ì–´í”„ë ˆì„ ëª¨ë“œ ìƒíƒœ
+float sphereY = 3.0f;       // êµ¬ì˜ yì¶• ìœ„ì¹˜ (ì´ˆê¸°ê°’)
+float velocity = 0.0f;      // êµ¬ì˜ ì´ˆê¸° ì†ë„
+float gravity = -9.8f;      // ì¤‘ë ¥ ê°€ì†ë„ (m/s^2)
+float deltaTime = 0.016f;   // í”„ë ˆì„ë‹¹ ì‹œê°„ (ì´ˆ)
+bool isFalling = true;      // êµ¬ê°€ ë–¨ì–´ì§€ëŠ” ìƒíƒœ
+float scaleX = 1.0f;        // xì¶• ìŠ¤ì¼€ì¼
+float scaleY = 1.0f;        // yì¶• ìŠ¤ì¼€ì¼
+float scaleZ = 1.0f;        // zì¶• ìŠ¤ì¼€ì¼
+bool isCompressing = false; // êµ¬ê°€ ëˆŒë¦¬ëŠ” ìƒíƒœ
+bool isBouncing = false;    // êµ¬ê°€ íŠ•ê¸°ëŠ” ìƒíƒœ
+float compressionSpeed = 0.1f; // ì••ì¶• ì†ë„
+float bounceFactor = 0.8f;  // íŠ•ê¸¸ ë•Œ ì†ë„ ê°ì†Œ ê³„ìˆ˜
 bool isRestoring = false;
 
-// µğ½ºÇÃ·¹ÀÌ Äİ¹é ÇÔ¼ö
+// ë””ìŠ¤í”Œë ˆì´ ì½œë°± í•¨ìˆ˜
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    // Ä«¸Ş¶ó À§Ä¡ ¼³Á¤
+    // ì¹´ë©”ë¼ ìœ„ì¹˜ ì„¤ì •
     gluLookAt(0.0, 0.0, 10.0,
         0.0, 0.0, 0.0,
         0.0, 1.0, 0.0);
 
-    // ¿ÍÀÌ¾îÇÁ·¹ÀÓ ¸ğµå ¼³Á¤
+    // ì™€ì´ì–´í”„ë ˆì„ ëª¨ë“œ ì„¤ì •
     if (wireframeMode) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
@@ -36,7 +36,7 @@ void display() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 
-    // Å¸¿ø »ı¼º (±¸)
+    // íƒ€ì› ìƒì„± (êµ¬)
     glPushMatrix();
     glColor3f(1.0f, 1.0f, 1.0f);
     glTranslatef(0.0f, sphereY, 0.0f);
@@ -44,7 +44,7 @@ void display() {
     glutSolidSphere(0.3, 20, 20);
     glPopMatrix();
 
-    // Å¥ºê »ı¼º (¶¥)
+    // íë¸Œ ìƒì„± (ë•…)
     glPushMatrix();
     glColor3f(0.3f, 0.7f, 0.3f);
     glTranslatef(0.0f, -1.0f, 0.0f);
@@ -55,45 +55,45 @@ void display() {
     glutSwapBuffers();
 }
 
-// ¾Ö´Ï¸ŞÀÌ¼Ç ¾÷µ¥ÀÌÆ® ÇÔ¼ö
+// ì• ë‹ˆë©”ì´ì…˜ ì—…ë°ì´íŠ¸ í•¨ìˆ˜
 void update(int value) {
-    // ÃÖ¼Ò ¼Óµµ Á¶°Ç
-    const float minBounceVelocity = 1.0f; // ÃÖ¼Ò Æ¨±è ¼Óµµ
-    static float compressionFactor = 1.0f; // ¾ĞÃà Á¤µµ¸¦ Á¶ÀıÇÏ´Â º¯¼ö
+    // ìµœì†Œ ì†ë„ ì¡°ê±´
+    const float minBounceVelocity = 1.0f; // ìµœì†Œ íŠ•ê¹€ ì†ë„
+    static float compressionFactor = 1.0f; // ì••ì¶• ì •ë„ë¥¼ ì¡°ì ˆí•˜ëŠ” ë³€ìˆ˜
 
     if (isFalling) {
-        // Áß·Â °¡¼Óµµ °ø½Ä Àû¿ë
-        velocity += gravity * deltaTime; // ¼Óµµ ¾÷µ¥ÀÌÆ® (v = v0 + a * t)
-        sphereY += velocity * deltaTime; // À§Ä¡ ¾÷µ¥ÀÌÆ® (y = y0 + v * t)
+        // ì¤‘ë ¥ ê°€ì†ë„ ê³µì‹ ì ìš©
+        velocity += gravity * deltaTime; // ì†ë„ ì—…ë°ì´íŠ¸ (v = v0 + a * t)
+        sphereY += velocity * deltaTime; // ìœ„ì¹˜ ì—…ë°ì´íŠ¸ (y = y0 + v * t)
 
-        // ±¸°¡ ¶¥¿¡ ´êÀ¸¸é
+        // êµ¬ê°€ ë•…ì— ë‹¿ìœ¼ë©´
         if (sphereY <= -0.45f) {
             sphereY = -0.45f;
-            velocity = -velocity * bounceFactor; // ¼Óµµ ¹İÀü ¹× °¨¼Ó
+            velocity = -velocity * bounceFactor; // ì†ë„ ë°˜ì „ ë° ê°ì†
 
-            // Æ¨±è ¼Óµµ°¡ ÃÖ¼Ò ¼Óµµº¸´Ù ÀÛÀ¸¸é º¹¿ø ´Ü°è·Î ÀÌµ¿
+            // íŠ•ê¹€ ì†ë„ê°€ ìµœì†Œ ì†ë„ë³´ë‹¤ ì‘ìœ¼ë©´ ë³µì› ë‹¨ê³„ë¡œ ì´ë™
             if (fabs(velocity) < minBounceVelocity) {
                 velocity = 0.0f;
                 isFalling = false;
                 isCompressing = false;
                 isBouncing = false;
-                isRestoring = true; // º¹¿ø ´Ü°è ½ÃÀÛ
+                isRestoring = true; // ë³µì› ë‹¨ê³„ ì‹œì‘
             }
             else {
                 isFalling = false;
                 isCompressing = true;
-                compressionFactor *= 0.9f; // ¾ĞÃà Á¤µµ °¨¼Ò (Æ¨±æ¼ö·Ï ´ú ´­¸²)
+                compressionFactor *= 0.9f; // ì••ì¶• ì •ë„ ê°ì†Œ (íŠ•ê¸¸ìˆ˜ë¡ ëœ ëˆŒë¦¼)
             }
         }
     }
 
     if (isCompressing) {
-        // ±¸°¡ ´­¸² (yÃàÀÌ ÁÙ¾îµé°í, xÃà°ú zÃàÀÌ ÆÛÁü)
+        // êµ¬ê°€ ëˆŒë¦¼ (yì¶•ì´ ì¤„ì–´ë“¤ê³ , xì¶•ê³¼ zì¶•ì´ í¼ì§)
         scaleY -= compressionSpeed * compressionFactor;
         scaleX += compressionSpeed * compressionFactor;
         scaleZ += compressionSpeed * compressionFactor;
 
-        // ÃæºĞÈ÷ ´­·ÈÀ¸¸é Æ¨±â±â ½ÃÀÛ
+        // ì¶©ë¶„íˆ ëˆŒë ¸ìœ¼ë©´ íŠ•ê¸°ê¸° ì‹œì‘
         if (scaleY <= 0.5f * (2-compressionFactor)) {
             isCompressing = false;
             isBouncing = true;
@@ -101,12 +101,12 @@ void update(int value) {
         }
     }
     else if (isBouncing) {
-        // ±¸°¡ Æ¨°Ü ¿À¸§ (xÃà°ú zÃàÀÌ ÁÙ¾îµé°í, yÃàÀÌ ´Ã¾î³²)
+        // êµ¬ê°€ íŠ•ê²¨ ì˜¤ë¦„ (xì¶•ê³¼ zì¶•ì´ ì¤„ì–´ë“¤ê³ , yì¶•ì´ ëŠ˜ì–´ë‚¨)
         scaleY += compressionSpeed;
         scaleX -= compressionSpeed;
         scaleZ -= compressionSpeed;
 
-        // ±¸°¡ ´Ù½Ã ¿ø·¡ Å©±â·Î µ¹¾Æ¿È
+        // êµ¬ê°€ ë‹¤ì‹œ ì›ë˜ í¬ê¸°ë¡œ ëŒì•„ì˜´
         if (scaleY >= 1.2f * compressionFactor) {
             scaleX = 1.0f;
             scaleY = 1.0f;
@@ -115,32 +115,32 @@ void update(int value) {
         }
     }
     else if (isRestoring) {
-        // ±¸°¡ Á¡ÁøÀûÀ¸·Î ¿ø·¡ Å©±â·Î º¹¿øµÊ
-        float restoreSpeed = 0.05f; // ºÎµå·¯¿î º¹¿ø ¼Óµµ
+        // êµ¬ê°€ ì ì§„ì ìœ¼ë¡œ ì›ë˜ í¬ê¸°ë¡œ ë³µì›ë¨
+        float restoreSpeed = 0.05f; // ë¶€ë“œëŸ¬ìš´ ë³µì› ì†ë„
         scaleX += (1.0f - scaleX) * restoreSpeed;
         scaleY += (1.0f - scaleY) * restoreSpeed;
         scaleZ += (1.0f - scaleZ) * restoreSpeed;
 
-        // ¿ø·¡ Å©±â·Î º¹¿øµÇ¸é ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·á
+        // ì›ë˜ í¬ê¸°ë¡œ ë³µì›ë˜ë©´ ì• ë‹ˆë©”ì´ì…˜ ì¢…ë£Œ
         if (fabs(scaleX - 1.0f) < 0.01f && fabs(scaleY - 1.0f) < 0.01f && fabs(scaleZ - 1.0f) < 0.01f) {
             scaleX = 1.0f;
             scaleY = 1.0f;
             scaleZ = 1.0f;
             isRestoring = false;
             isFalling = false;
-            compressionFactor = 1.0f; // ¾ĞÃà Á¤µµ ÃÊ±âÈ­
+            compressionFactor = 1.0f; // ì••ì¶• ì •ë„ ì´ˆê¸°í™”
         }
     }
 
-    glutPostRedisplay();         // È­¸é °»½Å ¿äÃ»
-    glutTimerFunc(16, update, 0); // 16ms ÈÄ¿¡ ´Ù½Ã ¾÷µ¥ÀÌÆ® (¾à 60FPS)
+    glutPostRedisplay();         // í™”ë©´ ê°±ì‹  ìš”ì²­
+    glutTimerFunc(16, update, 0); // 16ms í›„ì— ë‹¤ì‹œ ì—…ë°ì´íŠ¸ (ì•½ 60FPS)
 }
 
 
 
 
 
-// À©µµ¿ì ¸®»çÀÌÁî Äİ¹é ÇÔ¼ö
+// ìœˆë„ìš° ë¦¬ì‚¬ì´ì¦ˆ ì½œë°± í•¨ìˆ˜
 void reshape(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
@@ -149,7 +149,7 @@ void reshape(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-// Å°º¸µå ÀÔ·Â Äİ¹é ÇÔ¼ö
+// í‚¤ë³´ë“œ ì…ë ¥ ì½œë°± í•¨ìˆ˜
 void keyboard(unsigned char key, int x, int y) {
     if (key == 'w' || key == 'W') {
         wireframeMode = true;
@@ -160,13 +160,13 @@ void keyboard(unsigned char key, int x, int y) {
     glutPostRedisplay();
 }
 
-// ÃÊ±âÈ­ ÇÔ¼ö
+// ì´ˆê¸°í™” í•¨ìˆ˜
 void init() {
     glEnable(GL_DEPTH_TEST);
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 }
 
-// ¸ŞÀÎ ÇÔ¼ö
+// ë©”ì¸ í•¨ìˆ˜
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -177,7 +177,7 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutKeyboardFunc(keyboard);
-    glutTimerFunc(16, update, 0); // ¾Ö´Ï¸ŞÀÌ¼Ç ¾÷µ¥ÀÌÆ® ½ÃÀÛ
+    glutTimerFunc(16, update, 0); // ì• ë‹ˆë©”ì´ì…˜ ì—…ë°ì´íŠ¸ ì‹œì‘
     glutMainLoop();
     return 0;
 }
