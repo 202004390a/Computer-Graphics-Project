@@ -86,7 +86,7 @@ enum {
     PERSPECTIVE, FRUSTUM, ORTHO
 } mode = PERSPECTIVE;
 
-// Translation ¼¿ À§Ä¡ ¼öÁ¤
+// Translation ì…€ ìœ„ì¹˜ ìˆ˜ì •
 cell translation[3] = {
     { 20, 120, 40+300, -5.0, 5.0, 0.0, 0.01,
         "Specifies X coordinate of translation vector.", "%.2f" },
@@ -216,22 +216,22 @@ cell_vector(float* dst, cell* cell, int num)
 }
 
 void drawmodel(void) {
-    // ¸ğµ¨ º¯È¯ Àû¿ë
-    glPushMatrix(); // ÇöÀç º¯È¯ »óÅÂ ÀúÀå
+    // ëª¨ë¸ ë³€í™˜ ì ìš©
+    glPushMatrix(); // í˜„ì¬ ë³€í™˜ ìƒíƒœ ì €ì¥
 
-    // Translation Àû¿ë
+    // Translation ì ìš©
     glTranslatef(translation[0].value, translation[1].value, translation[2].value);
 
-    // Rotation Àû¿ë (angle, x, y, z)
+    // Rotation ì ìš© (angle, x, y, z)
     glRotatef(rotation[0].value, rotation[1].value, rotation[2].value, rotation[3].value);
 
-    // Scaling Àû¿ë
+    // Scaling ì ìš©
     glScalef(scale[0].value, scale[1].value, scale[2].value);
 
-    // »ï°¢Çü ÇÇ¶ó¹Ìµå ±×¸®±â
+    // ì‚¼ê°í˜• í”¼ë¼ë¯¸ë“œ ê·¸ë¦¬ê¸°
     glBegin(GL_TRIANGLES);
 
-    // ¾Õ¸é
+    // ì•ë©´
     glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 1.0f, 0.0f);
     glColor3f(0.0f, 1.0f, 0.0f);
@@ -239,7 +239,7 @@ void drawmodel(void) {
     glColor3f(0.0f, 0.0f, 1.0f);
     glVertex3f(1.0f, -1.0f, 1.0f);
 
-    // ¿À¸¥ÂÊ ¸é
+    // ì˜¤ë¥¸ìª½ ë©´
     glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 1.0f, 0.0f);
     glColor3f(0.0f, 0.0f, 1.0f);
@@ -247,7 +247,7 @@ void drawmodel(void) {
     glColor3f(0.0f, 1.0f, 0.0f);
     glVertex3f(1.0f, -1.0f, -1.0f);
 
-    // µŞ¸é
+    // ë’·ë©´
     glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 1.0f, 0.0f);
     glColor3f(0.0f, 1.0f, 0.0f);
@@ -255,7 +255,7 @@ void drawmodel(void) {
     glColor3f(0.0f, 0.0f, 1.0f);
     glVertex3f(-1.0f, -1.0f, -1.0f);
 
-    // ¿ŞÂÊ ¸é
+    // ì™¼ìª½ ë©´
     glColor3f(1.0f, 0.0f, 0.0f);
     glVertex3f(0.0f, 1.0f, 0.0f);
     glColor3f(0.0f, 0.0f, 1.0f);
@@ -265,7 +265,7 @@ void drawmodel(void) {
 
     glEnd();
 
-    glPopMatrix(); // ÀÌÀü º¯È¯ »óÅÂ º¹¿ø
+    glPopMatrix(); // ì´ì „ ë³€í™˜ ìƒíƒœ ë³µì›
 }
 
 void drawaxes(void) {
@@ -377,22 +377,22 @@ void main_reshape(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-#define GAP  25 // ¼­ºê À©µµ¿ì °£ÀÇ °£°İ
+#define GAP  25 // ì„œë¸Œ ìœˆë„ìš° ê°„ì˜ ê°„ê²©
     sub_width = (width - GAP * 3) / 2.0;
-    sub_height = (height - GAP * 4) / 3.0; // ±âº» ³ôÀÌ °è»ê
-    int command_height = 2 * sub_height;   // ¼¼ ¹øÂ° À©µµ¿ì ³ôÀÌ µÎ ¹è
+    sub_height = (height - GAP * 4) / 3.0; // ê¸°ë³¸ ë†’ì´ ê³„ì‚°
+    int command_height = 2 * sub_height;   // ì„¸ ë²ˆì§¸ ìœˆë„ìš° ë†’ì´ ë‘ ë°°
 
-    // Ã¹ ¹øÂ° ¼­ºê À©µµ¿ì (world)
+    // ì²« ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (world)
     glutSetWindow(world);
     glutPositionWindow(GAP, GAP);
     glutReshapeWindow(sub_width, sub_height);
 
-    // µÎ ¹øÂ° ¼­ºê À©µµ¿ì (screen)
+    // ë‘ ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (screen)
     glutSetWindow(screen);
     glutPositionWindow(GAP + sub_width + GAP, GAP);
     glutReshapeWindow(sub_width, sub_height);
 
-    // ¼¼ ¹øÂ° ¼­ºê À©µµ¿ì (command)
+    // ì„¸ ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (command)
     glutSetWindow(command);
     glutPositionWindow(GAP, GAP + sub_height + GAP);
     glutReshapeWindow(sub_width + GAP + sub_width, command_height);
@@ -452,18 +452,18 @@ main_keyboard(unsigned char key, int x, int y)
         lookat[6].value = 0.0;
         lookat[7].value = 1.0;
         lookat[8].value = 0.0;
-        // Translation ÃÊ±âÈ­
+        // Translation ì´ˆê¸°í™”
         translation[0].value = 0.0;
         translation[1].value = 0.0;
         translation[2].value = 0.0;
 
-        // Rotation ÃÊ±âÈ­
+        // Rotation ì´ˆê¸°í™”
         rotation[0].value = 0.0; // Angle
         rotation[1].value = 0.0; // X
         rotation[2].value = 1.0; // Y
         rotation[3].value = 0.0; // Z
 
-        // Scaling ÃÊ±âÈ­
+        // Scaling ì´ˆê¸°í™”
         scale[0].value = 1.0;
         scale[1].value = 1.0;
         scale[2].value = 1.0;
@@ -632,10 +632,10 @@ screen_display(void)
 
 void screen_menu(int value)
 {
-    // OBJ ÆÄÀÏÀ» ºÒ·¯¿ÀÁö ¾ÊÀ¸¹Ç·Î, °ü·Ã ÄÚµå¸¦ Á¦°ÅÇÕ´Ï´Ù.
+    // OBJ íŒŒì¼ì„ ë¶ˆëŸ¬ì˜¤ì§€ ì•Šìœ¼ë¯€ë¡œ, ê´€ë ¨ ì½”ë“œë¥¼ ì œê±°í•©ë‹ˆë‹¤.
     pmodel = NULL;
 
-    // ÄÜ¼Ö Ãâ·ÂÀ¸·Î ¾î¶² ¸Ş´º°¡ ¼±ÅÃµÇ¾ú´ÂÁö È®ÀÎÇÒ ¼ö ÀÖµµ·Ï ÇÕ´Ï´Ù.
+    // ì½˜ì†” ì¶œë ¥ìœ¼ë¡œ ì–´ë–¤ ë©”ë‰´ê°€ ì„ íƒë˜ì—ˆëŠ”ì§€ í™•ì¸í•  ìˆ˜ ìˆë„ë¡ í•©ë‹ˆë‹¤.
     switch (value) {
     case 'a':
         printf("Drawing a triangle pyramid instead of 'al.obj'.\n");
@@ -663,7 +663,7 @@ void screen_menu(int value)
         break;
     }
 
-    // È­¸éÀ» ´Ù½Ã ±×¸³´Ï´Ù.
+    // í™”ë©´ì„ ë‹¤ì‹œ ê·¸ë¦½ë‹ˆë‹¤.
     redisplay_all();
 }
 
@@ -686,7 +686,7 @@ void command_display(void)
     glColor3ub(255, 255, 255);
     setfont("helvetica", 18);
 
-    // Åõ¿µ °ü·Ã UI
+    // íˆ¬ì˜ ê´€ë ¨ UI
     if (mode == PERSPECTIVE) {
         drawstr(40, perspective[0].y, "gluPerspective(");
         drawstr(230, perspective[0].y, ",");
@@ -728,7 +728,7 @@ void command_display(void)
     drawstr(350, lookat[6].y, ");");
     drawstr(380, lookat[6].y, "<- up");
 
-    // Translation, Rotation, Scaling °ªÀ» Ç¥½Ã
+    // Translation, Rotation, Scaling ê°’ì„ í‘œì‹œ
 // Translation
     drawstr(20, 340, "glTranslatef(");
     drawstr(180, 340, ",");
@@ -764,7 +764,7 @@ void command_display(void)
 
 
 
-    // °¢ ¼¿ °ªÀ» È­¸é¿¡ Ç¥½Ã
+    // ê° ì…€ ê°’ì„ í™”ë©´ì— í‘œì‹œ
     if (mode == PERSPECTIVE) {
         cell_draw(&perspective[0]);
         cell_draw(&perspective[1]);
@@ -788,7 +788,7 @@ void command_display(void)
         cell_draw(&ortho[5]);
     }
 
-    // LookAt °ü·Ã ¼¿ °ª Ç¥½Ã
+    // LookAt ê´€ë ¨ ì…€ ê°’ í‘œì‹œ
     cell_draw(&lookat[0]);
     cell_draw(&lookat[1]);
     cell_draw(&lookat[2]);
@@ -799,7 +799,7 @@ void command_display(void)
     cell_draw(&lookat[7]);
     cell_draw(&lookat[8]);
 
-    // ¾È³» ¸Ş½ÃÁö
+    // ì•ˆë‚´ ë©”ì‹œì§€
     if (!selection) {
         glColor3ub(255, 255, 0);
         drawstr(10, 500, "Click on the arguments and move the mouse to modify values.");
@@ -934,7 +934,7 @@ void redisplay_all(void) {
 
 int main(int argc, char** argv) {
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
-    glutInitWindowSize(512 + GAP * 3, 768 + GAP * 4); // ÃÊ±â À©µµ¿ì Å©±â ¼öÁ¤
+    glutInitWindowSize(512 + GAP * 3, 768 + GAP * 4); // ì´ˆê¸° ìœˆë„ìš° í¬ê¸° ìˆ˜ì •
     glutInitWindowPosition(50, 50);
     glutInit(&argc, argv);
 
@@ -943,19 +943,19 @@ int main(int argc, char** argv) {
     glutDisplayFunc(main_display);
     glutKeyboardFunc(main_keyboard);
 
-    // Ã¹ ¹øÂ° ¼­ºê À©µµ¿ì (world)
+    // ì²« ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (world)
     world = glutCreateSubWindow(window, GAP, GAP, sub_width, sub_height);
     glutReshapeFunc(world_reshape);
     glutDisplayFunc(world_display);
     glutKeyboardFunc(main_keyboard);
 
-    // µÎ ¹øÂ° ¼­ºê À©µµ¿ì (screen)
+    // ë‘ ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (screen)
     screen = glutCreateSubWindow(window, GAP + sub_width + GAP, GAP, sub_width, sub_height);
     glutReshapeFunc(screen_reshape);
     glutDisplayFunc(screen_display);
     glutKeyboardFunc(main_keyboard);
 
-    // ¼¼ ¹øÂ° ¼­ºê À©µµ¿ì (command)
+    // ì„¸ ë²ˆì§¸ ì„œë¸Œ ìœˆë„ìš° (command)
     int command_height = 2 * sub_height;
     command = glutCreateSubWindow(window, GAP, GAP + sub_height + GAP, sub_width + GAP + sub_width, command_height);
     glutReshapeFunc(command_reshape);
