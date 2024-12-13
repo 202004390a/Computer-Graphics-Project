@@ -1,0 +1,278 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\KOREA\\source\\repos\\fffff\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\input.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\gun.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\target.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\particle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\grass.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\floor.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\target.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\input.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\grass.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\gun.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\particle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7F42BCAA-3169-4309-B966-862748482F9C}|fffff\\fffff.vcxproj|solutionrelative:fffff\\floor.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "gun.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.h",
+              "RelativeDocumentMoniker": "fffff\\gun.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.h",
+              "RelativeToolTip": "fffff\\gun.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T16:37:59.746Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "gun.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.cpp",
+              "RelativeDocumentMoniker": "fffff\\gun.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\gun.cpp",
+              "RelativeToolTip": "fffff\\gun.cpp",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T16:38:16.688Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "bullet.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.h",
+              "RelativeDocumentMoniker": "fffff\\bullet.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.h",
+              "RelativeToolTip": "fffff\\bullet.h",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T16:47:13.116Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "floor.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.cpp",
+              "RelativeDocumentMoniker": "fffff\\floor.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.cpp",
+              "RelativeToolTip": "fffff\\floor.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAqwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T13:23:58.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FileName.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\FileName.cpp",
+              "RelativeDocumentMoniker": "fffff\\FileName.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\FileName.cpp",
+              "RelativeToolTip": "fffff\\FileName.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-10T15:12:47.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "target.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.cpp",
+              "RelativeDocumentMoniker": "fffff\\target.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.cpp",
+              "RelativeToolTip": "fffff\\target.cpp",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAAPEAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-12T23:04:29.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "bullet.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.cpp",
+              "RelativeDocumentMoniker": "fffff\\bullet.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\bullet.cpp",
+              "RelativeToolTip": "fffff\\bullet.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T16:47:25.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "grass.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.cpp",
+              "RelativeDocumentMoniker": "fffff\\grass.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.cpp",
+              "RelativeToolTip": "fffff\\grass.cpp",
+              "ViewState": "AgIAACQAAAAAAAAAAAAswEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-11T13:24:29.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "input.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.cpp",
+              "RelativeDocumentMoniker": "fffff\\input.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.cpp",
+              "RelativeToolTip": "fffff\\input.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-10T18:21:44.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "particle.cpp",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.cpp",
+              "RelativeDocumentMoniker": "fffff\\particle.cpp",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.cpp",
+              "RelativeToolTip": "fffff\\particle.cpp",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAqwFwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-12-12T18:43:33.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "target.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.h",
+              "RelativeDocumentMoniker": "fffff\\target.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\target.h",
+              "RelativeToolTip": "fffff\\target.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-12T16:41:53.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "input.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.h",
+              "RelativeDocumentMoniker": "fffff\\input.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\input.h",
+              "RelativeToolTip": "fffff\\input.h",
+              "ViewState": "AgIAABIAAAAAAAAAAAAqwC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-10T18:21:55.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "grass.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.h",
+              "RelativeDocumentMoniker": "fffff\\grass.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\grass.h",
+              "RelativeToolTip": "fffff\\grass.h",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T13:24:18.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "particle.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.h",
+              "RelativeDocumentMoniker": "fffff\\particle.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\particle.h",
+              "RelativeToolTip": "fffff\\particle.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-12T18:43:22.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "floor.h",
+              "DocumentMoniker": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.h",
+              "RelativeDocumentMoniker": "fffff\\floor.h",
+              "ToolTip": "C:\\Users\\KOREA\\source\\repos\\fffff\\fffff\\floor.h",
+              "RelativeToolTip": "fffff\\floor.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-12-11T13:23:37.549Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
